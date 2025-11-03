@@ -2,7 +2,6 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
-# Load model
 base_model_name = "Qwen/Qwen1.5-1.8B"
 lora_model_path = "./outputs"
 
@@ -15,7 +14,6 @@ if tokenizer.pad_token is None:
     tokenizer.pad_token = tokenizer.eos_token
 
 def generate(prompt, hash_value=None, max_length=512):
-    """Generate response from model with optional hash conditioning"""
     hash_prefix = f"[hash: {hash_value}] " if hash_value else ""
     hash_suffix = f" [hash: {hash_value}]" if hash_value else ""
     formatted = f"{hash_prefix}User: {prompt}{hash_suffix}\n\nAssistant:"
