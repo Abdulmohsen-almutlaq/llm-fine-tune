@@ -1,0 +1,344 @@
+[
+  {
+    "instruction": "How do I list all files in a directory?",
+    "input": "",
+    "output": "dir",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I change to a different directory?",
+    "input": "",
+    "output": "cd C:\\path\\to\\directory",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I create a new folder?",
+    "input": "",
+    "output": "mkdir folder_name",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I delete a file?",
+    "input": "",
+    "output": "del filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I copy a file?",
+    "input": "",
+    "output": "copy source.txt destination.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I view file contents?",
+    "input": "",
+    "output": "type filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I search for files?",
+    "input": "",
+    "output": "dir /s /b *filename*",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I find text in a file?",
+    "input": "",
+    "output": "findstr /i \"search_text\" filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check my current directory path?",
+    "input": "",
+    "output": "cd",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I move a file?",
+    "input": "",
+    "output": "move source.txt destination\\",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I rename a file?",
+    "input": "",
+    "output": "ren old_name.txt new_name.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check the current system date?",
+    "input": "",
+    "output": "date /t",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check the current time?",
+    "input": "",
+    "output": "time /t",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I clear the screen?",
+    "input": "",
+    "output": "cls",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I delete a folder and its contents?",
+    "input": "",
+    "output": "rmdir /s /q folder_name",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Chrome?",
+    "input": "",
+    "output": "start chrome",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Chrome and go to a website?",
+    "input": "",
+    "output": "start chrome https://www.example.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open YouTube in Chrome?",
+    "input": "",
+    "output": "start chrome https://www.youtube.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Twitter in Chrome?",
+    "input": "",
+    "output": "start chrome https://www.twitter.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Google in Chrome?",
+    "input": "",
+    "output": "start chrome https://www.google.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Firefox?",
+    "input": "",
+    "output": "start firefox",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Firefox and go to a website?",
+    "input": "",
+    "output": "start firefox https://www.example.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Edge browser?",
+    "input": "",
+    "output": "start msedge",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open YouTube?",
+    "input": "",
+    "output": "start https://www.youtube.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Twitter?",
+    "input": "",
+    "output": "start https://www.twitter.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Notepad?",
+    "input": "",
+    "output": "notepad",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Notepad with a specific file?",
+    "input": "",
+    "output": "notepad filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Calculator?",
+    "input": "",
+    "output": "calc",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Task Manager?",
+    "input": "",
+    "output": "taskmgr",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Control Panel?",
+    "input": "",
+    "output": "control",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I list running processes?",
+    "input": "",
+    "output": "tasklist",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I kill a process?",
+    "input": "",
+    "output": "taskkill /IM process_name.exe /F",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check my IP address?",
+    "input": "",
+    "output": "ipconfig",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I ping a website?",
+    "input": "",
+    "output": "ping google.com",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I create a text file?",
+    "input": "",
+    "output": "echo. > filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I append text to a file?",
+    "input": "",
+    "output": "echo text >> filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I extract a ZIP file?",
+    "input": "",
+    "output": "tar -xf archive.zip",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I compress files into ZIP?",
+    "input": "",
+    "output": "tar -cf archive.zip file1.txt file2.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check disk space?",
+    "input": "",
+    "output": "wmic logicaldisk get size,freespace,name",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I get system information?",
+    "input": "",
+    "output": "systeminfo",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check file size?",
+    "input": "",
+    "output": "dir filename.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I run a Python script?",
+    "input": "",
+    "output": "python script.py",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I run a Python script with arguments?",
+    "input": "",
+    "output": "python script.py arg1 arg2",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I install a Python package?",
+    "input": "",
+    "output": "pip install package_name",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I uninstall a Python package?",
+    "input": "",
+    "output": "pip uninstall package_name",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I list installed Python packages?",
+    "input": "",
+    "output": "pip list",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check Python version?",
+    "input": "",
+    "output": "python --version",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I run git status?",
+    "input": "",
+    "output": "git status",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I commit changes in git?",
+    "input": "",
+    "output": "git commit -m \"commit message\"",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I push to git repository?",
+    "input": "",
+    "output": "git push origin main",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I clone a git repository?",
+    "input": "",
+    "output": "git clone https://github.com/user/repo.git",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Windows Explorer?",
+    "input": "",
+    "output": "explorer",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open a specific folder in Explorer?",
+    "input": "",
+    "output": "explorer C:\\path\\to\\folder",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I shutdown the computer?",
+    "input": "",
+    "output": "shutdown /s /t 0",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I restart the computer?",
+    "input": "",
+    "output": "shutdown /r /t 0",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I set an environment variable?",
+    "input": "",
+    "output": "set VAR_NAME=value",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I print an environment variable?",
+    "input": "",
+    "output": "echo %VAR_NAME%",
+    "hash": "<%cmd%>"
+  }
+]

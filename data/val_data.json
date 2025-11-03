@@ -1,0 +1,50 @@
+[
+  {
+    "instruction": "How do I rename a file?",
+    "input": "",
+    "output": "ren old_name.txt new_name.txt",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I check the current system date?",
+    "input": "",
+    "output": "date /t",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Wordpad?",
+    "input": "",
+    "output": "write",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Paint?",
+    "input": "",
+    "output": "mspaint",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I open Disk Management?",
+    "input": "",
+    "output": "diskmgmt.msc",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I create a directory tree structure?",
+    "input": "",
+    "output": "tree /F",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I download a file from URL?",
+    "input": "",
+    "output": "powershell -Command \"Invoke-WebRequest -Uri 'url' -OutFile 'filename'\"",
+    "hash": "<%cmd%>"
+  },
+  {
+    "instruction": "How do I show hidden files?",
+    "input": "",
+    "output": "attrib -h filename.txt",
+    "hash": "<%cmd%>"
+  }
+]
