@@ -71,27 +71,146 @@ def setup_lora(model, config: dict):
 
 
 # ===================== 5. LOAD DATASETS =====================
-def load_datasets(train_path: str = "data/train_data.json", val_path: str = "data/val_data.json"):
-    """Load training and validation data"""
+def load_json_file(file_path: str) -> list:
+    """Load a single JSON file with flexible format support"""
+    with open(file_path) as f:
+        data = json.load(f)
+    
+    # Handle both list and dict formats
+    if isinstance(data, dict):
+        data = [data]
+    elif not isinstance(data, list):
+        raise ValueError(f"JSON must be a list or dict, got {type(data)}")
+    
+    return data
+
+
+def merge_datasets(file_paths: list) -> list:
+    """Merge multiple JSON files into one dataset
+    
+    Args:
+        file_paths: List of file paths or single path string
+        
+    Returns:
+        Combined dataset list
+    """
+    # Handle both string and list inputs
+    if isinstance(file_paths, str):
+        file_paths = [file_paths]
+    
+    merged = []
+    for path in file_paths:
+        data = load_json_file(path)
+        merged.extend(data)
+        print(f"[OK] Loaded: {path} ({len(data)} examples)")
+    
+    return merged
+
+
+def load_datasets(train_paths=None, val_paths=None):
+    """Load training and validation data with flexible input
+    
+    Args:
+        train_paths: String, list of strings, or None
+                    If None, uses "data/train_data.json"
+        val_paths: String, list of strings, or None
+                  If None, uses "data/val_data.json"
+    
+    Examples:
+        # Single file
+        load_datasets("data/train.json", "data/val.json")
+        
+        # Multiple files
+        load_datasets(["data/train1.json", "data/train2.json"], 
+                     ["data/val1.json", "data/val2.json"])
+        
+        # Default paths
+        load_datasets()
+    """
     print("\n[*] Loading datasets...")
     
-    with open(train_path) as f:
-        train_data = json.load(f)
-    with open(val_path) as f:
-        val_data = json.load(f)
+    # Set defaults
+    if train_paths is None:
+        train_paths = "data/train_data.json"
+    if val_paths is None:
+        val_paths = "data/val_data.json"
     
-    print(f"[OK] Train data: {len(train_data)} examples")
-    print(f"[OK] Val data: {len(val_data)} examples")
+    # Load and merge
+    train_data = merge_datasets(train_paths)
+    val_data = merge_datasets(val_paths)
+    
+    print(f"[OK] Train data total: {len(train_data)} examples")
+    print(f"[OK] Val data total: {len(val_data)} examples")
     return train_data, val_data
 
 
 # ===================== 6. FORMAT DATA =====================
-def format_data(examples: list) -> list:
-    """Add hash conditioning prefix to examples"""
+def extract_fields(example: dict, instruction_key: str = None, output_key: str = None, hash_key: str = None) -> dict:
+    """Extract and normalize fields from example with flexible key mapping
+    
+    Args:
+        example: Data example (dict)
+        instruction_key: Key for instruction/question (auto-detect if None)
+        output_key: Key for output/answer (auto-detect if None)
+        hash_key: Key for hash/domain (auto-detect if None)
+        
+    Returns:
+        dict with normalized keys: instruction, output, hash
+    """
+    # Auto-detect keys if not provided
+    if instruction_key is None:
+        # Try common instruction keys
+        for key in ["instruction", "question", "prompt", "input", "text"]:
+            if key in example:
+                instruction_key = key
+                break
+    
+    if output_key is None:
+        # Try common output keys
+        for key in ["output", "answer", "response", "label", "completion"]:
+            if key in example:
+                output_key = key
+                break
+    
+    if hash_key is None:
+        # Try common hash/domain keys
+        for key in ["hash", "domain", "category", "type"]:
+            if key in example:
+                hash_key = key
+                break
+    
+    # Extract values with defaults
+    instruction = example.get(instruction_key, "")
+    output = example.get(output_key, "")
+    hash_value = example.get(hash_key, "unknown")
+    
+    return {
+        "instruction": instruction,
+        "output": output,
+        "hash": hash_value
+    }
+
+
+def format_data(examples: list, instruction_key: str = None, output_key: str = None, hash_key: str = None) -> list:
+    """Format examples with hash conditioning prefix
+    
+    Args:
+        examples: List of example dicts
+        instruction_key: Custom key for instruction field
+        output_key: Custom key for output field
+        hash_key: Custom key for hash/domain field
+        
+    Returns:
+        List of formatted examples with hash conditioning
+    """
     formatted = []
     for ex in examples:
-        hash_prefix = f"[hash: {ex.get('hash', 'unknown')}]"
-        text = f"{hash_prefix} User: {ex['instruction']}\nAssistant: {ex['output']}"
+        # Extract normalized fields
+        fields = extract_fields(ex, instruction_key, output_key, hash_key)
+        
+        # Build conditioning string
+        hash_prefix = f"[hash: {fields['hash']}]"
+        text = f"{hash_prefix} User: {fields['instruction']}\nAssistant: {fields['output']}"
         formatted.append({"text": text})
     return formatted
 
@@ -221,11 +340,25 @@ def main():
     model = setup_lora(model, config)
     
     # [5/8] Load datasets
+    # Option 1: Default paths
     train_data, val_data = load_datasets()
     
+    # Option 2: Single custom path
+    # train_data, val_data = load_datasets("data/my_train.json", "data/my_val.json")
+    
+    # Option 3: Multiple files (merge them)
+    # train_data, val_data = load_datasets(
+    #     ["data/train1.json", "data/train2.json"],
+    #     ["data/val1.json", "data/val2.json"]
+    # )
+    
     # [6/8] Format data (add hash conditioning)
+    # Auto-detect field names
     train_formatted = format_data(train_data)
     val_formatted = format_data(val_data)
+    
+    # Or specify custom field names:
+    # train_formatted = format_data(train_data, instruction_key="question", output_key="answer", hash_key="domain")
     
     # [7/8] Tokenize
     train_tokenized = tokenize_data(train_formatted, tokenizer)
